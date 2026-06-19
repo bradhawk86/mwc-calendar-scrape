@@ -53,11 +53,8 @@ def fetch_events():
         "Accept": "application/json, text/javascript, */*; q=0.01"
     }
 
+    session.get(f"{BASE_URL}/calendar", headers=headers)
     resp = session.get(API_URL, params=params, headers=headers, timeout=20)
-
-    if resp.status_code == 403:
-        print("❌ Still blocked (403). Response:", resp.text[:300])
-
     resp.raise_for_status()
 
     return resp.json()
@@ -67,7 +64,6 @@ def fetch_events():
 # =============================
 
 data = fetch_events()
-
 events = []
 
 for item in data:
@@ -77,7 +73,7 @@ for item in data:
         start_str = item.get("STARTDATE")
         end_str = item.get("ENDDATE")
 
-        if not start_str:
+        if not title or not start_str:
             continue
 
         start_dt = parse_cf_date(start_str)
@@ -86,18 +82,25 @@ for item in data:
         if not start_dt:
             continue
 
+        if not end_dt or end_dt <= start_dt:
+            end_dt = start_dt + timedelta(hours=1)
+
         location = item.get("LOCATION", "")
         desc = item.get("DESCRIPTION", "")
+        event_url = item.get("SHORTURL", "")
+
+        if event_url:
+            event_url = f"{BASE_URL}/{event_url}"
+        else:
+            event_url = f"{BASE_URL}/calendar"
 
         events.append({
-            "date": start_dt,
             "title": title,
-            "url": BASE_URL,
-            "details": {
-                "start": start_dt.time(),
-                "end": end_dt.time() if end_dt else None,
-                "location": location,
-                "desc": desc
+            "start_dt": start_dt,
+            "end_dt": end_dt,
+            "location": location,
+            "description": desc,
+            "url": event_url
             }
         })
 
@@ -127,13 +130,12 @@ def load_existing(filename="calendar.ics"):
                 if line.startswith("SUMMARY:"):
                     title = line.replace("SUMMARY:", "").strip()
                 if "DTSTART" in line:
-                    date = datetime.strptime(line.split(":")[1][:8], "%Y%m%d")
+                    date = datetime.strptime(line.split(":")[1][:15], "%Y%m%dT%H%M%S")
 
             if uid:
                 existing[uid] = {
                     "raw": block.strip(),
                     "date": date,
-                    "title": title
                 }
     except:
         pass
@@ -161,12 +163,15 @@ for uid, old in existing.items():
 filtered = []
 
 for uid, e in merged.items():
-    dt = e["date"]
+    if "raw" in e:
+        dt = e['date']
+    else:
+        dt = e['start_dt']
 
     if PAST_LIMIT <= dt <= FUTURE_LIMIT:
         filtered.append((uid, e))
 
-filtered.sort(key=lambda x: x[1]["date"])
+filtered.sort(key=lambda x: x[1]['date'] if "raw" in x[1] else x[1]['start_dt'])
 
 # =============================
 # WRITE ICS
@@ -183,26 +188,32 @@ with open("calendar.ics", "w") as f:
         f.write(f"DTSTAMP:{now_utc()}\n")
 
         if "raw" in e:
-            f.write(e["raw"] + "\n")
+            f.write(e['raw'] + "\n")
             f.write("END:VEVENT\n")
             continue
 
-        start = e["details"]["start"]
-        end = e["details"]["end"]
-
-        start_dt = TZ.localize(datetime.combine(e["date"], start))
-        end_dt = TZ.localize(datetime.combine(e["date"], end or start))
+        start_dt = TZ.localize(e['start_dt'])
+        end_dt = TZ.localize(e['end_dt'])
 
         f.write(f"DTSTART:{start_dt.strftime('%Y%m%dT%H%M%S')}\n")
         f.write(f"DTEND:{end_dt.strftime('%Y%m%dT%H%M%S')}\n")
 
         f.write(f"SUMMARY:{e['title']}\n")
 
-        if e["details"]["location"]:
-            f.write(f"LOCATION:{e['details']['location']}\n")
+        if e.get("location"):
+            f.write(f"LOCATION:{e['location']}\n")
 
-        if e["details"]["desc"]:
-            f.write(f"DESCRIPTION:{e['details']['desc']}\n")
+        desc_parts = []
+
+        if e.get("url"):
+            desc_parts.append(e['url'].strip())
+
+        if e.get("description"):
+            desc_parts.append(e['description'].strip())
+
+        if desc_parts:
+            full_desc = "\\n\\n".join(desc_parts)
+            f.write(f"DESCRIPTION:{full_desc}\n")
 
         f.write("END:VEVENT\n")
 
