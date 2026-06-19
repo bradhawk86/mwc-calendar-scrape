@@ -1,201 +1,155 @@
 import requests
-from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
-import re
-import uuid
 import hashlib
 import pytz
+import json
 
 BASE_URL = "https://www.mountainwestcouncil.org"
-CAL_URL = f"{BASE_URL}/calendar"
-TZ = pytz.timezone("America/Boise")
+API_URL = f"{BASE_URL}/cfroot/campsCMSWrapper.cfc"
 
+TZ = pytz.timezone("America/Boise")
 session = requests.Session()
 
 NOW = datetime.now()
+
+# Rolling windows
+START_DATE = NOW.strftime("%Y-%m-%d")
+END_DATE = (NOW + timedelta(days=365)).strftime("%Y-%m-%d")
+
 PAST_LIMIT = NOW - timedelta(days=365 * 5)
 FUTURE_LIMIT = NOW + timedelta(days=365)
 
-
 def now_utc():
     return datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
-
 
 def event_uid(e):
     base = f"{e['title']}_{e['date']}"
     return hashlib.md5(base.encode()).hexdigest()
 
+def fetch_events():
+    params = {
+        "method": "GetRemoteCMSEvents",
+        "returnformat": "json",
+        "CalendarStartDate": START_DATE,
+        "CalendarEndDate": END_DATE,
+        "StartDate": START_DATE,
+        "SiteID": "127",
+        "CampID": "123",
+        "DistrictID": "0",
+        "EventCategoryID": "0"
+    }
 
-def event_hash(e):
-    content = f"{e['title']}_{e['date']}_{e.get('details', {})}"
-    return hashlib.md5(content.encode()).hexdigest()
-
-
-def parse_time_range(text):
-    match = re.search(
-        r"(\\d{1,2}:?\\d{0,2}\\s*[AaPp][Mm])\\s*-\\s*(\\d{1,2}:?\\d{0,2}\\s*[AaPp][Mm])",
-        text
-    )
-    if not match:
-        return None, None
-
-    def norm(t):
-        return datetime.strptime(
-            t.strip().upper(),
-            "%I:%M %p" if ":" in t else "%I %p"
-        ).time()
+    resp = session.get(API_URL, params=params, timeout=20)
+    resp.raise_for_status()
 
     try:
-        return norm(match.group(1)), norm(match.group(2))
+        return resp.json()
     except:
-        return None, None
+        print("❌ Failed to parse JSON:", resp.text[:500])
+        return []
 
+# =============================
+# FETCH EVENTS
+# =============================
 
-def parse_date(text):
-    match = re.match(r"(\\d{1,2})\\s+([A-Z]{3})", text)
-    if not match:
-        return None
+data = fetch_events()
 
-    d, m = match.groups()
+events = []
 
-    for year in (NOW.year, NOW.year + 1):
-        try:
-            return datetime.strptime(f"{d} {m} {year}", "%d %b %Y")
-        except:
+for item in data:
+    try:
+        title = item.get("Name", "").strip()
+
+        start_str = item.get("StartDate")
+        end_str = item.get("EndDate")
+
+        if not start_str:
             continue
-    return None
 
+        start_dt = datetime.fromisoformat(start_str)
+        end_dt = datetime.fromisoformat(end_str) if end_str else None
 
-def extract_details(url):
-    try:
-        r = session.get(url, timeout=10)
-        s = BeautifulSoup(r.text, "html.parser")
-        text = s.get_text(" ", strip=True)
+        location = item.get("Location", "")
+        desc = item.get("Description", "")
 
-        start, end = parse_time_range(text)
+        events.append({
+            "date": start_dt,
+            "title": title,
+            "url": BASE_URL,
+            "details": {
+                "start": start_dt.time(),
+                "end": end_dt.time() if end_dt else None,
+                "location": location,
+                "desc": desc
+            }
+        })
 
-        loc_match = re.search(r"Where:\\s*(.*?)(When:|$)", text)
+    except Exception as e:
+        print("Skipped event:", e)
 
-        return {
-            "start": start,
-            "end": end,
-            "location": loc_match.group(1).strip() if loc_match else "",
-            "desc": text[:800]
-        }
+print(f"✅ Pulled {len(events)} events from API")
 
-    except:
-        return {}
-
+# =============================
+# LOAD EXISTING
+# =============================
 
 def load_existing(filename="calendar.ics"):
     existing = {}
-
     try:
         with open(filename, "r") as f:
-            blocks = f.read().split("BEGIN:VEVENT")[1:]
+            content = f.read().split("BEGIN:VEVENT")[1:]
 
-        for b in blocks:
-            uid = re.search(r"UID:(.*)", b)
-            dt = re.search(r"DTSTART(?:;VALUE=DATE)?:(\\d{8})", b)
-            summ = re.search(r"SUMMARY:(.*)", b)
-            mod = re.search(r"LAST-MODIFIED:(.*)", b)
+        for block in content:
+            uid = None
+            date = None
+            title = None
 
-            if uid and dt and summ:
-                existing[uid.group(1).strip()] = {
-                    "date": datetime.strptime(dt.group(1), "%Y%m%d"),
-                    "title": summ.group(1).strip(),
-                    "modified": mod.group(1).strip() if mod else None,
-                    "raw": b.strip()
+            for line in block.split("\n"):
+                if line.startswith("UID:"):
+                    uid = line.replace("UID:", "").strip()
+                if line.startswith("SUMMARY:"):
+                    title = line.replace("SUMMARY:", "").strip()
+                if "DTSTART" in line:
+                    date = datetime.strptime(line.split(":")[1][:8], "%Y%m%d")
+
+            if uid:
+                existing[uid] = {
+                    "raw": block.strip(),
+                    "date": date,
+                    "title": title
                 }
-
     except:
         pass
 
     return existing
 
-
-# =============================
-# SCRAPE EVENTS
-# =============================
-
-resp = session.get(CAL_URL, timeout=15)
-soup = BeautifulSoup(resp.text, "html.parser")
-
-events = []
-
-for a in soup.find_all("a", href=True):
-    text = a.get_text(strip=True)
-
-    m = re.match(r"(\\d{1,2}\\s+[A-Z]{3})", text)
-    if not m:
-        continue
-
-    dt = parse_date(m.group(1))
-    if not dt:
-        continue
-
-    title = text[len(m.group(1)):].strip()
-    if not title:
-        continue
-
-    url = a["href"]
-    if not url.startswith("http"):
-        url = BASE_URL + url
-
-    details = extract_details(url)
-
-    events.append({
-        "date": dt,
-        "title": title,
-        "url": url,
-        "details": details
-    })
-
-
-# Deduplicate
-seen = set()
-clean = []
-for e in events:
-    key = (e["date"], e["title"])
-    if key not in seen:
-        clean.append(e)
-        seen.add(key)
-
-events = clean
-
-
-# =============================
-# MERGE WITH EXISTING
-# =============================
-
 existing = load_existing()
+
+# =============================
+# MERGE + FILTER
+# =============================
 
 merged = {}
 
+# Add new events
 for e in events:
     uid = event_uid(e)
     merged[uid] = e
 
+# Keep old ones
 for uid, old in existing.items():
     if uid not in merged:
         merged[uid] = old
 
-
-# =============================
-# FILTER WINDOW
-# =============================
-
 filtered = []
 
 for uid, e in merged.items():
-    dt = e["date"] if isinstance(e, dict) else e["date"]
+    dt = e["date"]
 
     if PAST_LIMIT <= dt <= FUTURE_LIMIT:
         filtered.append((uid, e))
 
-
 filtered.sort(key=lambda x: x[1]["date"])
-
 
 # =============================
 # WRITE ICS
@@ -207,51 +161,35 @@ with open("calendar.ics", "w") as f:
     f.write("PRODID:-//Mountain West Council//Events//EN\n")
 
     for uid, e in filtered:
-        now = now_utc()
-
-        if "raw" in e:
-            f.write("BEGIN:VEVENT\n")
-            f.write(e["raw"] + "\n")
-            continue
-
-        existing_event = existing.get(uid)
-
-        if existing_event:
-            last_mod = existing_event["modified"]
-        else:
-            last_mod = now
-
         f.write("BEGIN:VEVENT\n")
         f.write(f"UID:{uid}\n")
-        f.write(f"DTSTAMP:{now}\n")
-        f.write(f"CREATED:{last_mod}\n")
-        f.write(f"LAST-MODIFIED:{last_mod}\n")
+        f.write(f"DTSTAMP:{now_utc()}\n")
 
-        start = e["details"].get("start")
-        end = e["details"].get("end")
+        if "raw" in e:
+            f.write(e["raw"] + "\n")
+            f.write("END:VEVENT\n")
+            continue
 
-        if start:
-            sdt = TZ.localize(datetime.combine(e["date"], start))
-            edt = TZ.localize(datetime.combine(e["date"], end or start))
+        start = e["details"]["start"]
+        end = e["details"]["end"]
 
-            f.write(f"DTSTART:{sdt.strftime('%Y%m%dT%H%M%S')}\n")
-            f.write(f"DTEND:{edt.strftime('%Y%m%dT%H%M%S')}\n")
-        else:
-            d1 = e["date"].strftime("%Y%m%d")
-            d2 = (e["date"] + timedelta(days=1)).strftime("%Y%m%d")
+        start_dt = TZ.localize(datetime.combine(e["date"], start))
+        end_dt = TZ.localize(datetime.combine(e["date"], end or start))
 
-            f.write(f"DTSTART;VALUE=DATE:{d1}\n")
-            f.write(f"DTEND;VALUE=DATE:{d2}\n")
+        f.write(f"DTSTART:{start_dt.strftime('%Y%m%dT%H%M%S')}\n")
+        f.write(f"DTEND:{end_dt.strftime('%Y%m%dT%H%M%S')}\n")
 
         f.write(f"SUMMARY:{e['title']}\n")
 
-        if e["details"].get("location"):
+        if e["details"]["location"]:
             f.write(f"LOCATION:{e['details']['location']}\n")
 
-        f.write(f"DESCRIPTION:{e['details'].get('desc','')}\\n{e['url']}\n")
+        if e["details"]["desc"]:
+            f.write(f"DESCRIPTION:{e['details']['desc']}\n")
 
         f.write("END:VEVENT\n")
 
     f.write("END:VCALENDAR\n")
 
-print(f"✅ Calendar generated: {len(filtered)} events")
+print(f"✅ Final ICS contains {len(filtered)} events")
+
