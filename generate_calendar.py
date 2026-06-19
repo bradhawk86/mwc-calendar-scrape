@@ -34,7 +34,7 @@ def fetch_events():
         "returnformat": "json",
         "CalendarStartDate": START_DATE,
         "CalendarEndDate": END_DATE,
-        "StartDate": "2026-6-01",
+        "StartDate": START_DATE,
         "SiteID": "127",
         "CampID": "123",
         "DistrictIDi": "0",
@@ -71,10 +71,10 @@ events = []
 
 for item in data:
     try:
-        title = item.get("Name", "").strip()
+        title = item.get("NAME", "").strip()
 
-        start_str = item.get("StartDate")
-        end_str = item.get("EndDate")
+        start_str = item.get("STARTDATE")
+        end_str = item.get("ENDDATE")
 
         if not start_str:
             continue
@@ -82,8 +82,8 @@ for item in data:
         start_dt = datetime.fromisoformat(start_str)
         end_dt = datetime.fromisoformat(end_str) if end_str else None
 
-        location = item.get("Location", "")
-        desc = item.get("Description", "")
+        location = item.get("LOCATION", "")
+        desc = item.get("DESCRIPTION", "")
 
         events.append({
             "date": start_dt,
