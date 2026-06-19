@@ -29,10 +29,11 @@ jobs:
         git config user.name "calendar-bot"
         git config user.email "bot@example.com"
 
-        if git diff --quiet; then
+        git add calendar.ics
+
+        if git diff --staged --quiet; then
           echo "No changes"
         else
-          git add calendar.ics
           git commit -m "Auto-update calendar"
           git push
         fi
