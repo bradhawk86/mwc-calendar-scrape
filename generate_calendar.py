@@ -39,14 +39,20 @@ def fetch_events():
         "EventCategoryID": "0"
     }
 
-    resp = session.get(API_URL, params=params, timeout=20)
-    resp.raise_for_status()
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                      "(KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Referer": "https://www.mountainwestcouncil.org/calendar",
+        "Accept": "application/json, text/javascript, */*; q=0.01"
+    }
 
-    try:
-        return resp.json()
-    except:
-        print("❌ Failed to parse JSON:", resp.text[:500])
-        return []
+    resp = session.get(API_URL, params=params, headers=headers, timeout=20)
+
+    if resp.status_code == 403:
+        print("❌ Still blocked (403). Response:", resp.text[:300])
+
+    resp.raise_for_status()
+    return resp.json()
 
 # =============================
 # FETCH EVENTS
