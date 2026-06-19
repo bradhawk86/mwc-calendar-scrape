@@ -191,11 +191,15 @@ with open("calendar.ics", "w") as f:
             f.write("END:VEVENT\n")
             continue
 
-        start_dt = TZ.localize(e['start_dt'])
-        end_dt = TZ.localize(e['end_dt'])
+        start_local = TZ.localize(e['start_dt'])
+        end_local = TZ.localize(e['end_dt'])
 
-        f.write(f"DTSTART:{start_dt.strftime('%Y%m%dT%H%M%S')}\n")
-        f.write(f"DTEND:{end_dt.strftime('%Y%m%dT%H%M%S')}\n")
+        # Convert to UTC
+        start_dt = start_local.astimezone(timezone.utc)
+        end_dt = end_local.astimezone(timezone.utc)
+
+        f.write(f"DTSTART:{start_dt.strftime('%Y%m%dT%H%M%SZ')}\n")
+        f.write(f"DTEND:{end_dt.strftime('%Y%m%dT%H%M%SZ')}\n")
 
         f.write(f"SUMMARY:{e['title']}\n")
 
