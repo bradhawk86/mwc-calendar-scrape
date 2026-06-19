@@ -101,7 +101,6 @@ for item in data:
             "location": location,
             "description": desc,
             "url": event_url
-            }
         })
 
     except Exception as e:
