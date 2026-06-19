@@ -28,6 +28,13 @@ def event_uid(e):
     base = f"{e['title']}_{e['date']}"
     return hashlib.md5(base.encode()).hexdigest()
 
+def parse_cf_date(dt_str):
+    try:
+        return datetime.strptime(dt_str, "%a, %d %b %Y %H:%M:%S")
+    except Exception:
+        print("⚠️ Failed to parse:", dt_str)
+        return None
+
 def fetch_events():
     params = {
         "method": "GetRemoteCMSEvents",
@@ -55,10 +62,6 @@ def fetch_events():
 
     resp.raise_for_status()
 
-    print("RAW Resp")
-    print(resp.text[:300])
-    print("JSON")
-    print(resp.json())
     return resp.json()
 
 # =============================
@@ -79,8 +82,11 @@ for item in data:
         if not start_str:
             continue
 
-        start_dt = datetime.fromisoformat(start_str)
-        end_dt = datetime.fromisoformat(end_str) if end_str else None
+        start_dt = parse_cf_date(start_str)
+        end_dt = parse_cf_date(end_str) if end_str else None
+
+        if not start_dt:
+            continue
 
         location = item.get("LOCATION", "")
         desc = item.get("DESCRIPTION", "")
