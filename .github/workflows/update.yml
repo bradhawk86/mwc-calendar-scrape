@@ -1,0 +1,39 @@
+name: Update Calendar
+
+on:
+  schedule:
+    - cron: "0 */12 * * *"   # every 12 hours
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.x"
+
+    - name: Install dependencies
+      run: pip install requests beautifulsoup4 pytz
+
+    - name: Run generator
+      run: python generate_calendar.py
+
+    - name: Commit changes
+      run: |
+        git config user.name "calendar-bot"
+        git config user.email "bot@example.com"
+
+        if git diff --quiet; then
+          echo "No changes"
+        else
+          git add calendar.ics
+          git commit -m "Auto-update calendar"
+          git push
+        fi
+
