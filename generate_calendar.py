@@ -1,5 +1,5 @@
 import requests
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import hashlib
 import pytz
 import json
@@ -16,13 +16,11 @@ NOW = datetime.now()
 START_DATE = (NOW - timedelta(days=60)).strftime("%Y-%m-%d")
 END_DATE = (NOW + timedelta(days=365)).strftime("%Y-%m-%d")
 
-START_DATE_2 = (NOW - timedelta(days=60)).strftime("%Y-%m-%d")
-
 PAST_LIMIT = NOW - timedelta(days=365 * 5)
 FUTURE_LIMIT = NOW + timedelta(days=365)
 
 def now_utc():
-    return datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
+    return datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
 
 def event_uid(e):
     base = f"{e['title']}_{e['date']}"
