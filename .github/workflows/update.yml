@@ -5,6 +5,9 @@ on:
     - cron: "0 */12 * * *"   # every 12 hours
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,6 +26,9 @@ jobs:
 
     - name: Run generator
       run: python generate_calendar.py
+
+    - name: Debug files
+      run: ls -lah
 
     - name: Commit changes
       run: |
