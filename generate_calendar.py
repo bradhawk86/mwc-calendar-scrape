@@ -90,7 +90,7 @@ for item in data:
         event_url = item.get("SHORTURL", "")
 
         if event_url:
-            event_url = f"{BASE_URL}/{event_url}"
+            event_url = f"{BASE_URL}{event_url}"
         else:
             event_url = f"{BASE_URL}/calendar"
 
