@@ -13,7 +13,7 @@ session = requests.Session()
 NOW = datetime.now()
 
 # Rolling windows
-START_DATE = NOW.strftime("%Y-%m-%d")
+START_DATE = (NOW - timedelta(days=60)).strftime("%Y-%m-%d")
 END_DATE = (NOW + timedelta(days=365)).strftime("%Y-%m-%d")
 
 PAST_LIMIT = NOW - timedelta(days=365 * 5)
@@ -32,7 +32,6 @@ def fetch_events():
         "returnformat": "json",
         "CalendarStartDate": START_DATE,
         "CalendarEndDate": END_DATE,
-        "StartDate": START_DATE,
         "SiteID": "127",
         "CampID": "123",
         "DistrictID": "0",
@@ -52,6 +51,11 @@ def fetch_events():
         print("❌ Still blocked (403). Response:", resp.text[:300])
 
     resp.raise_for_status()
+
+    print("RAW Resp")
+    print(resp.text[:300])
+    print("JSON")
+    print(resp.json())
     return resp.json()
 
 # =============================
