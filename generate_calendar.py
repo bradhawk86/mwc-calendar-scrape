@@ -16,6 +16,8 @@ NOW = datetime.now()
 START_DATE = (NOW - timedelta(days=60)).strftime("%Y-%m-%d")
 END_DATE = (NOW + timedelta(days=365)).strftime("%Y-%m-%d")
 
+START_DATE_2 = (NOW - timedelta(days=60)).strftime("%Y-%m-%d")
+
 PAST_LIMIT = NOW - timedelta(days=365 * 5)
 FUTURE_LIMIT = NOW + timedelta(days=365)
 
@@ -32,9 +34,10 @@ def fetch_events():
         "returnformat": "json",
         "CalendarStartDate": START_DATE,
         "CalendarEndDate": END_DATE,
+        "StartDate": "2026-6-01",
         "SiteID": "127",
         "CampID": "123",
-        "DistrictID": "0",
+        "DistrictIDi": "0",
         "EventCategoryID": "0"
     }
 
