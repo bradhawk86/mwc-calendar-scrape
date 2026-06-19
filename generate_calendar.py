@@ -23,7 +23,7 @@ def now_utc():
     return datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
 
 def event_uid(e):
-    base = f"{e['title']}_{e['date']}"
+    base = f"{e['title']}_{e['start_dt']}"
     return hashlib.md5(base.encode()).hexdigest()
 
 def parse_cf_date(dt_str):
