@@ -14,7 +14,8 @@ session = requests.Session()
 NOW = datetime.now()
 
 # Rolling windows
-START_DATE = (NOW - timedelta(days=120)).strftime("%Y-%m-%d")
+START_DATE_DT = NOW - timedelta(days=120)
+START_DATE = START_DATE_DT.strftime("%Y-%m-%d")
 END_DATE = (NOW + timedelta(days=365)).strftime("%Y-%m-%d")
 
 PAST_LIMIT = NOW - timedelta(days=365 * 5)
@@ -184,8 +185,7 @@ for uid, old in existing.items():
     # or it could be a moved event
     # Retain the first two cases, but not the third.
     exists = (uid in merged)
-    print(f"Type: {type(old['date'])}")
-    if (not exists) and ((old['date'] < START_DATE) or is_not_a_moved_event(old, merged)):
+    if (not exists) and ((old['date'] < START_DATE_DT) or is_not_a_moved_event(old, merged)):
         merged[uid] = old
     elif exists:
         # No need to update the DTSTAMP field; this causes unnecessary check-ins
