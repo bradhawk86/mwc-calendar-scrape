@@ -189,7 +189,7 @@ for uid, old in existing.items():
         merged[uid] = old
     elif exists:
         # No need to update the DTSTAMP field; this causes unnecessary check-ins
-        merged[uid]['stamp'] = old['stamp']
+        merged[uid]['stamp'] = old['stamp'].strftime("%Y%m%dT%H%M%SZ")
 
 filtered = []
 
