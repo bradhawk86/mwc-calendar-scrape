@@ -1,8 +1,9 @@
-import requests
 from datetime import datetime, timedelta, timezone
+from rapidfuzz import fuzz
 import hashlib
-import pytz
 import json
+import pytz
+import requests
 
 BASE_URL = "https://www.mountainwestcouncil.org"
 API_URL = f"{BASE_URL}/cfroot/campsCMSWrapper.cfc"
@@ -32,6 +33,22 @@ def parse_cf_date(dt_str):
     except Exception:
         print("⚠️ Failed to parse:", dt_str)
         return None
+
+def is_not_a_moved_event(old_event, new_events):
+    for uid, new_event in new_events:
+        old_title = old_event.get("title", "")
+        new_title = new_event.get("title", "")
+        if old_title and new_title:
+            score = fuzz.ratio(old_title, new_title)
+            if (score > 90.0):
+                old_date = old_event.get("date", "")
+                new_date = new_event.get("start_dt", "")
+                window = timedelta(days=90)
+                if old_date and new_date and (abs(new_date - old_date) <= window):
+                    print(f"Detected moved event\nOld Title {old_title} New Title {new_title}\nOld DT {old_date} New DT {new_date}") 
+                    return false
+    return true
+                
 
 def fetch_events():
     params = {
@@ -135,6 +152,7 @@ def load_existing(filename="calendar.ics"):
                 existing[uid] = {
                     "raw": block.strip(),
                     "date": date,
+                    "title": title,
                 }
     except:
         pass
@@ -156,7 +174,7 @@ for e in events:
 
 # Keep old ones
 for uid, old in existing.items():
-    if uid not in merged:
+    if uid not in merged and is_not_a_moved_event(old, merged):
         merged[uid] = old
 
 filtered = []
