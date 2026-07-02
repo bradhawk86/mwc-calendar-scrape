@@ -201,14 +201,14 @@ with open("calendar.ics", "w") as f:
 
     for uid, e in filtered:
         f.write("BEGIN:VEVENT\n")
-        f.write(f"UID:{uid}\n")
-        f.write(f"DTSTAMP:{now_utc()}\n")
 
         if "raw" in e:
             f.write(e['raw'] + "\n")
-            f.write("END:VEVENT\n")
             continue
 
+        f.write(f"UID:{uid}\n")
+        f.write(f"DTSTAMP:{now_utc()}\n")
+        
         start_local = TZ.localize(e['start_dt'])
         end_local = TZ.localize(e['end_dt'])
 
