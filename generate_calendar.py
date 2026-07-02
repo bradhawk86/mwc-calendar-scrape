@@ -14,7 +14,7 @@ session = requests.Session()
 NOW = datetime.now()
 
 # Rolling windows
-START_DATE = (NOW - timedelta(days=60)).strftime("%Y-%m-%d")
+START_DATE = (NOW - timedelta(days=120)).strftime("%Y-%m-%d")
 END_DATE = (NOW + timedelta(days=365)).strftime("%Y-%m-%d")
 
 PAST_LIMIT = NOW - timedelta(days=365 * 5)
@@ -82,6 +82,7 @@ def fetch_events():
 
 data = fetch_events()
 events = []
+current_timestamp = now_utc()
 
 for item in data:
     try:
@@ -117,7 +118,8 @@ for item in data:
             "end_dt": end_dt,
             "location": location,
             "description": desc,
-            "url": event_url
+            "url": event_url,
+            "stamp":current_timestamp,
         })
 
     except Exception as e:
@@ -145,6 +147,8 @@ def load_existing(filename="calendar.ics"):
                     uid = line.replace("UID:", "").strip()
                 if line.startswith("SUMMARY:"):
                     title = line.replace("SUMMARY:", "").strip()
+                if line.startswith("DTSTAMP:"):
+                    stamp = datetime.strptime(line.split(":")[1][:15], "%Y%m%dT%H%M%S")
                 if "DTSTART" in line:
                     date = datetime.strptime(line.split(":")[1][:15], "%Y%m%dT%H%M%S")
 
@@ -153,6 +157,7 @@ def load_existing(filename="calendar.ics"):
                     "raw": block.strip(),
                     "date": date,
                     "title": title,
+                    "stamp": stamp
                 }
     except:
         pass
@@ -174,8 +179,16 @@ for e in events:
 
 # Keep old ones
 for uid, old in existing.items():
-    if uid not in merged and is_not_a_moved_event(old, merged):
+    # When uid is not in merged:
+    # it could be older that the requested "new" events
+    # or it could be a moved event
+    # Retain the first two cases, but not the third.
+    exists = (uid in merged)
+    if (not exists) and ((old['date'] < START_DATE) or is_not_a_moved_event(old, merged)):
         merged[uid] = old
+    elif exists:
+        # No need to update the DTSTAMP field; this causes unnecessary check-ins
+        merged[uid]['stamp'] = old['stamp']
 
 filtered = []
 
@@ -209,7 +222,7 @@ with open("calendar.ics", "w") as f:
             continue
 
         f.write(f"UID:{uid}\n")
-        f.write(f"DTSTAMP:{now_utc()}\n")
+        f.write(f"DTSTAMP:{e['stamp']}\n")
         
         start_local = TZ.localize(e['start_dt'])
         end_local = TZ.localize(e['end_dt'])
