@@ -22,7 +22,7 @@ jobs:
         python-version: "3.x"
 
     - name: Install dependencies
-      run: pip install requests beautifulsoup4 pytz
+      run: pip install requests beautifulsoup4 pytz rapidfuzz
 
     - name: Run generator
       run: python generate_calendar.py
