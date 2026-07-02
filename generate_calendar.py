@@ -46,8 +46,8 @@ def is_not_a_moved_event(old_event, new_events):
                 window = timedelta(days=90)
                 if old_date and new_date and (abs(new_date - old_date) <= window):
                     print(f"Detected moved event\nOld Title {old_title} New Title {new_title}\nOld DT {old_date} New DT {new_date}") 
-                    return false
-    return true
+                    return False
+    return True
                 
 
 def fetch_events():
