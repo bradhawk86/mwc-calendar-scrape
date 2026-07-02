@@ -35,7 +35,7 @@ def parse_cf_date(dt_str):
         return None
 
 def is_not_a_moved_event(old_event, new_events):
-    for uid, new_event in new_events:
+    for uid, new_event in new_events.items():
         old_title = old_event.get("title", "")
         new_title = new_event.get("title", "")
         if old_title and new_title:
