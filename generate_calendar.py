@@ -193,7 +193,7 @@ filtered.sort(key=lambda x: x[1]['date'] if "raw" in x[1] else x[1]['start_dt'])
 # =============================
 # WRITE ICS
 # =============================
-
+raw_count=0
 with open("calendar.ics", "w") as f:
     f.write("BEGIN:VCALENDAR\n")
     f.write("VERSION:2.0\n")
@@ -204,6 +204,8 @@ with open("calendar.ics", "w") as f:
 
         if "raw" in e:
             f.write(e['raw'] + "\n")
+            print(f"Existing {uid}")
+            raw_count = raw_count + 1
             continue
 
         f.write(f"UID:{uid}\n")
@@ -240,5 +242,6 @@ with open("calendar.ics", "w") as f:
 
     f.write("END:VCALENDAR\n")
 
+print(f"Raw Events: {raw_count}")
 print(f"✅ Final ICS contains {len(filtered)} events")
 
