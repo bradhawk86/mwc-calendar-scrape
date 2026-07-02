@@ -147,7 +147,7 @@ def load_existing(filename="calendar.ics"):
                     uid = line.replace("UID:", "").strip()
                 if line.startswith("SUMMARY:"):
                     title = line.replace("SUMMARY:", "").strip()
-                if line.startswith("DTSTAMP:"):
+                if "DTSTAMP" in line:
                     stamp = datetime.strptime(line.split(":")[1][:15], "%Y%m%dT%H%M%S")
                 if "DTSTART" in line:
                     date = datetime.strptime(line.split(":")[1][:15], "%Y%m%dT%H%M%S")
@@ -157,7 +157,7 @@ def load_existing(filename="calendar.ics"):
                     "raw": block.strip(),
                     "date": date,
                     "title": title,
-                    "stamp": stamp
+                    "stamp": stamp,
                 }
     except:
         pass
@@ -184,6 +184,7 @@ for uid, old in existing.items():
     # or it could be a moved event
     # Retain the first two cases, but not the third.
     exists = (uid in merged)
+    print(f"Type: {type(old['date'])}")
     if (not exists) and ((old['date'] < START_DATE) or is_not_a_moved_event(old, merged)):
         merged[uid] = old
     elif exists:
