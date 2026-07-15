@@ -134,7 +134,7 @@ DTSTART:20260417T230000Z
 DTEND:20260418T230000Z
 SUMMARY:BALOO Training Spring 2026, BALOO Training
 LOCATION:Montgomery Farms
-DESCRIPTION:https://www.mountainwestcouncil.org/BALOOtraining\n\nSeptember 18-19, 2026 Saturday 5:00 pm Check-In Sunday 4:00 pm Graduation and Check-Out Where: Montgomery Farms, 668 Sugar Ave, Ontario, OR 97914
+DESCRIPTION:https://www.mountainwestcouncil.org/BALOOtraining\n\nSeptember 18-19, 2026 Friday 5:00 pm Check-In Saturday 4:00 pm Graduation and Check-Out Where: Montgomery Farms, 668 Sugar Ave, Ontario, OR 97914
 END:VEVENT
 BEGIN:VEVENT
 UID:5923fedcafaa8b2c38704040943a087b
@@ -297,6 +297,15 @@ DTEND:20260531T220000Z
 SUMMARY:Wilderness First Aid Training Spring 2026, Wilderness First Aid Training
 LOCATION:Mountain West Council Office
 DESCRIPTION:https://www.mountainwestcouncil.org/wildernessfirstaid\n\nThis is a training course that focuses on prevention, assessment, and treatment for an ill or injured person in a remote environment where definitive
+END:VEVENT
+BEGIN:VEVENT
+UID:9421e1e6438d55d1e899daccee9864a3
+DTSTAMP:20260715T024948Z
+DTSTART:20260606T000000Z
+DTEND:20260607T170000Z
+SUMMARY:OA Spring Induction 2026, Tukarica Lodge 266 Spring Induction
+LOCATION:Montgomery Farms
+DESCRIPTION:https://www.mountainwestcouncil.org/admin2/events/6700/35653/OA-Spring-Induction-2026--Tukarica-Lodge-266-Spring-Induction\n\nThis is the Spring Tukarica Lodge 266, Order of the Arrow induction for candidates who have been elected by their unit peers.  The Induction will be
 END:VEVENT
 BEGIN:VEVENT
 UID:4e264ed6bd5f8e388a678ed22e64da8a
@@ -557,7 +566,7 @@ DTSTART:20260918T230000Z
 DTEND:20260919T220000Z
 SUMMARY:BALOO Fall 2026, BALOO Training
 LOCATION:Montgomery Farms
-DESCRIPTION:https://www.mountainwestcouncil.org/BALOOtraining\n\nSeptember 18-19, 2026 Saturday 5:00 pm Check-In Sunday 4:00 pm Graduation and Check-Out Where: Montgomery Farms, 668 Sugar Ave, Ontario, OR 97914
+DESCRIPTION:https://www.mountainwestcouncil.org/BALOOtraining\n\nSeptember 18-19, 2026 Friday 5:00 pm Check-In Saturday 4:00 pm Graduation and Check-Out Where: Montgomery Farms, 668 Sugar Ave, Ontario, OR 97914
 END:VEVENT
 BEGIN:VEVENT
 UID:6bed9d24050fb3f578b3e67a409c9518
@@ -566,7 +575,7 @@ DTSTART:20260918T230000Z
 DTEND:20260919T220000Z
 SUMMARY:IOLS Fall 2026, IOLS Fall 2026
 LOCATION:Montgomery Farms
-DESCRIPTION:https://www.mountainwestcouncil.org/IOLS\n\nSeptember 18-19, 2026 Saturday 5:00 pm Check-In Sunday 4:00 pm Graduation and Check-Out Where: Montgomery Farms, 668 Sugar Ave, Ontario, OR 97914
+DESCRIPTION:https://www.mountainwestcouncil.org/IOLS\n\nSeptember 18-19, 2026 Friday 5:00 pm Check-In Saturday 4:00 pm Graduation and Check-Out Where: Montgomery Farms, 668 Sugar Ave, Ontario, OR 97914
 END:VEVENT
 BEGIN:VEVENT
 UID:716db752b4381e793c4c89ba1ea1f7a2
