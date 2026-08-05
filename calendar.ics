@@ -542,13 +542,13 @@ LOCATION:Faith Journey Church
 DESCRIPTION:https://www.mountainwestcouncil.org/content/132472/Owyhee-District-Roundtable-
 END:VEVENT
 BEGIN:VEVENT
-UID:146b03a926c72a54bc28fe10c3e19a56
-DTSTAMP:20260702T040006Z
-DTSTART:20260911T060000Z
-DTEND:20260914T060000Z
+UID:5ba243cc6df633e2bd05f4f47c76051c
+DTSTAMP:20260805T025158Z
+DTSTART:20260911T230000Z
+DTEND:20260913T190000Z
 SUMMARY:Mountaineer Rendezvous 2026, Mountaineer Rendezvous
-LOCATION:Camp Morrison - copy
-DESCRIPTION:https://www.mountainwestcouncil.org/admin2/events/7198/34973/Mountaineer-Rendezvous-2026--Mountaineer-Rendezvous\n\nMountaineering Experience. This Introductory rendezvous is being held in celebration of the original Rocky Mountain rendezvous that was attended by
+LOCATION:Bradley Scout Reservation (BSR)
+DESCRIPTION:https://www.mountainwestcouncil.org/rendezvous\n\nMountaineering Experience Living in the 19th Century This Introductory Rendezvous celebrates the original Rocky Mountain Rendezvous attended by
 END:VEVENT
 BEGIN:VEVENT
 UID:ba32f4b3447be7809d74187b6cfb7b52
@@ -587,6 +587,15 @@ LOCATION:Bradley Scout Reservation (BSR)
 DESCRIPTION:https://www.mountainwestcouncil.org/admin2/events/6702/35654/OA-Fall-Induction-2026--Tukarica-Lodge-266-Fall-Induction\n\nThis is the Spring Tukarica Lodge 266, Order of the Arrow induction for candidates who have been elected by their unit peers.  The Induction will be
 END:VEVENT
 BEGIN:VEVENT
+UID:68d3ce77c2a83a2a60eef5e7bb8d9bb7
+DTSTAMP:20260805T025158Z
+DTSTART:20260919T140000Z
+DTEND:20260920T220000Z
+SUMMARY:Wilderness First Aid Fall 2026, Wilderness First Aid Training
+LOCATION:Mountain West Council Office
+DESCRIPTION:https://www.mountainwestcouncil.org/wildernessfirstaid\n\nThis is a training course that focuses on prevention, assessment, and treatment for an ill or injured person in a remote environment where definitive
+END:VEVENT
+BEGIN:VEVENT
 UID:d94b189c74ce10ef04187b20ade7ba5a
 DTSTAMP:20260702T040006Z
 DTSTART:20260925T010000Z
@@ -594,15 +603,6 @@ DTEND:20260925T023000Z
 SUMMARY:Tukarica Lodge LEC Meeting
 LOCATION:Mountain West Council Office
 DESCRIPTION:https://www.mountainwestcouncil.org/content/134177/Tukarica-Lodge-LEC-Meeting-\n\nLodge Executive Committee (LEC) The Order of the Arrow (OA) Tukarica Lodge Executive Committee (LEC) meeting is the monthly gathering of the lodge's
-END:VEVENT
-BEGIN:VEVENT
-UID:5d54db8b1e906ca801f6807716c4f7d9
-DTSTAMP:20260702T040006Z
-DTSTART:20260926T140000Z
-DTEND:20260927T220000Z
-SUMMARY:Wilderness First Aid Fall 2026, Wilderness First Aid Training
-LOCATION:Mountain West Council Office
-DESCRIPTION:https://www.mountainwestcouncil.org/wildernessfirstaid\n\nThis is a training course that focuses on prevention, assessment, and treatment for an ill or injured person in a remote environment where definitive
 END:VEVENT
 BEGIN:VEVENT
 UID:e2099261a04d1d51e99b7fd02d8941f3
