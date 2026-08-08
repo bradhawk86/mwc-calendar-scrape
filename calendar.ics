@@ -101,15 +101,6 @@ LOCATION:Council Office & Scout Shop Closed
 DESCRIPTION:https://www.mountainwestcouncil.org/content/131325/Easter
 END:VEVENT
 BEGIN:VEVENT
-UID:60d0c1d997aa775da7bd94d32bc01669
-DTSTAMP:20260702T040006Z
-DTSTART:20260410T010000Z
-DTEND:20260410T023000Z
-SUMMARY:Owyhee District Roundtable
-LOCATION:American Legion Hall 
-DESCRIPTION:https://www.mountainwestcouncil.org/content/132468/Owyhee-District-Roundtable-
-END:VEVENT
-BEGIN:VEVENT
 UID:3b06414df5509ab2ea949e73e8aed0eb
 DTSTAMP:20260702T040006Z
 DTSTART:20260410T060000Z
@@ -117,6 +108,15 @@ DTEND:20260413T060000Z
 SUMMARY:2026 Wagon Wheel Camporee, Wagon Wheel Camporee
 LOCATION:Westcott Ranch
 DESCRIPTION:https://www.mountainwestcouncil.org/wagonwheelcamporee\n\nWagon Wheel Camporee is April 10-12, 2026 The price is $15 per Scout or Adult. The weekend will include: Scout lead campfires Practice with navigation
+END:VEVENT
+BEGIN:VEVENT
+UID:60d0c1d997aa775da7bd94d32bc01669
+DTSTAMP:20260702T040006Z
+DTSTART:20260410T010000Z
+DTEND:20260410T023000Z
+SUMMARY:Owyhee District Roundtable
+LOCATION:American Legion Hall 
+DESCRIPTION:https://www.mountainwestcouncil.org/content/132468/Owyhee-District-Roundtable-
 END:VEVENT
 BEGIN:VEVENT
 UID:c88c14547c69ec75f9dc12d63998efb7
@@ -603,6 +603,15 @@ DTEND:20260925T023000Z
 SUMMARY:Tukarica Lodge LEC Meeting
 LOCATION:Mountain West Council Office
 DESCRIPTION:https://www.mountainwestcouncil.org/content/134177/Tukarica-Lodge-LEC-Meeting-\n\nLodge Executive Committee (LEC) The Order of the Arrow (OA) Tukarica Lodge Executive Committee (LEC) meeting is the monthly gathering of the lodge's
+END:VEVENT
+BEGIN:VEVENT
+UID:b142f4d5916fc3527911039ce7986b7d
+DTSTAMP:20260808T015559Z
+DTSTART:20260926T000000Z
+DTEND:20260927T190000Z
+SUMMARY:Snake River Fall Camporee, Snake River District Camp-O-Ree
+LOCATION:Camp Murtaugh
+DESCRIPTION:https://www.mountainwestcouncil.org/SRDFallCamporee\n\nSnake River District Fall Camporee 2026: The Founders Promise and The Trail of the Pioneers Join the Snake River District for the 2026 Fall Camporee,
 END:VEVENT
 BEGIN:VEVENT
 UID:e2099261a04d1d51e99b7fd02d8941f3
