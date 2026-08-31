@@ -506,6 +506,15 @@ LOCATION:Bradley Scout Reservation (BSR)
 DESCRIPTION:https://www.mountainwestcouncil.org/content/131315/Wood-Badge-2026-Week-2
 END:VEVENT
 BEGIN:VEVENT
+UID:40d22aad66c09b515bb82ce1bd31e634
+DTSTAMP:20260831T185857Z
+DTSTART:20260826T140000Z
+DTEND:20260826T220000Z
+SUMMARY:Popcorn Show & Sell Orders Due Today, Popcorn Show & Sell Orders Due Today
+LOCATION:Mountain West Council Office
+DESCRIPTION:https://www.mountainwestcouncil.org/admin2/events/7525/31512/Popcorn-Show---Sell-Orders-Due-Today--Popcorn-Show---Sell-Orders-Due-Today\n\nAll Show & Sell Popcorn Orders are Due today by 4:00 pm.
+END:VEVENT
+BEGIN:VEVENT
 UID:1a97a275ec58708d4cbd614286baf3a8
 DTSTAMP:20260702T040006Z
 DTSTART:20260828T010000Z
@@ -587,6 +596,18 @@ LOCATION:Bradley Scout Reservation (BSR)
 DESCRIPTION:https://www.mountainwestcouncil.org/admin2/events/6702/35654/OA-Fall-Induction-2026--Tukarica-Lodge-266-Fall-Induction\n\nThis is the Spring Tukarica Lodge 266, Order of the Arrow induction for candidates who have been elected by their unit peers.  The Induction will be
 END:VEVENT
 BEGIN:VEVENT
+UID:b43927c9decd8d7567e8f42d71fc45a8
+DTSTAMP:20260831T185857Z
+DTSTART:20260919T140000Z
+DTEND:20260920T040000Z
+SUMMARY:Popcorn Show & Sell Distribution Day Today, Popcorn Show & Sell Distribution Day
+LOCATION:Pilot Freight Services
+DESCRIPTION:https://www.mountainwestcouncil.org/admin2/events/7526/31514/Popcorn-Show---Sell-Distribution-Day-Today--Popcorn-Show---Sell-Distribution-Day\n\nPlease pick up your Popcorn Show & Sell Today! 
+
+Doors Open at 8:00 AM
+Doors Close at 10:00 AM
+END:VEVENT
+BEGIN:VEVENT
 UID:68d3ce77c2a83a2a60eef5e7bb8d9bb7
 DTSTAMP:20260805T025158Z
 DTSTART:20260919T140000Z
@@ -632,6 +653,24 @@ LOCATION:Council Office & Scout Shop Closed
 DESCRIPTION:https://www.mountainwestcouncil.org/content/131332/Columbus---National-Indigenous-Peoples-Day
 END:VEVENT
 BEGIN:VEVENT
+UID:83c741e53c012852e1436af7a1942e02
+DTSTAMP:20260831T185857Z
+DTSTART:20261021T140000Z
+DTEND:20261021T220000Z
+SUMMARY:Popcorn Show & Sell Payment Due Today, Popcorn Show & Sell Payment Due Today
+LOCATION:Mountain West Council Office
+DESCRIPTION:https://www.mountainwestcouncil.org/admin2/events/7527/31513/Popcorn-Show---Sell-Payment-Due-Today--Popcorn-Show---Sell-Payment-Due-Today\n\nPlease submit your Popcorn Show & Sell payment today.
+END:VEVENT
+BEGIN:VEVENT
+UID:0132ade3e72b33b9d0129f5a57b70a8e
+DTSTAMP:20260831T185857Z
+DTSTART:20261021T150000Z
+DTEND:20261021T220000Z
+SUMMARY:Popcorn Unit Take Orders Due Today, Popcorn Unit Take Orders Due Today
+LOCATION:Mountain West Council Office
+DESCRIPTION:https://www.mountainwestcouncil.org/admin2/events/7528/31515/Popcorn-Unit-Take-Orders-Due-Today--Popcorn-Unit-Take-Orders-Due-Today\n\nAll Unit Popcorn Take Orders are Due Today!
+END:VEVENT
+BEGIN:VEVENT
 UID:139359a8af9d3e8a2bf5e1986d2e9296
 DTSTAMP:20260702T040006Z
 DTSTART:20261023T010000Z
@@ -657,6 +696,16 @@ DTEND:20261108T070000Z
 SUMMARY:Scouting For Food Weekend 1-Flyer Distribution
 LOCATION:Mountain West Council Office
 DESCRIPTION:https://www.mountainwestcouncil.org/sffw1
+END:VEVENT
+BEGIN:VEVENT
+UID:21cb68da34ae09ca2d72593141b8fbbc
+DTSTAMP:20260831T185857Z
+DTSTART:20261107T150000Z
+DTEND:20261108T050000Z
+SUMMARY:Popcorn Take Order Distribution Today, Popcorn Take Orders Distribution Today
+LOCATION:Pilot Freight Services
+DESCRIPTION:https://www.mountainwestcouncil.org/admin2/events/7529/31516/Popcorn-Take-Order-Distribution-Today--Popcorn-Take-Orders-Distribution-Today-\n\nPlease pick up your Take Order Popcorn
+Doors Open at 8am and close at 12 Noon
 END:VEVENT
 BEGIN:VEVENT
 UID:ebd7d4b2912a555f33c46a3df7b39f85
@@ -693,6 +742,15 @@ DTEND:20261128T060000Z
 SUMMARY:Thanksgiving
 LOCATION:Council Office & Scout Shop Closed
 DESCRIPTION:https://www.mountainwestcouncil.org/content/131334/Thanksgiving
+END:VEVENT
+BEGIN:VEVENT
+UID:6589967588f35d34ab4bad7fe53eb62a
+DTSTAMP:20260831T185857Z
+DTSTART:20261202T160000Z
+DTEND:20261202T230000Z
+SUMMARY:Popcorn Unit Money Collection Due Today, Popcorn Unit Money Collection
+LOCATION:Immanual Lutheran Church
+DESCRIPTION:https://www.mountainwestcouncil.org/admin2/events/7530/31518/Popcorn-Unit-Money-Collection-Due-Today--Popcorn-Unit-Money-Collection-\n\nPlease submit your Popcorn Unit Money Today!
 END:VEVENT
 BEGIN:VEVENT
 UID:9ba02ab74648ea462a2c7295673813bd
