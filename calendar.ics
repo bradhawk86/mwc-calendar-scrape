@@ -689,6 +689,15 @@ LOCATION:Council Office & Scout Shop Closed
 DESCRIPTION:https://www.mountainwestcouncil.org/content/131318/AOL-Camporee
 END:VEVENT
 BEGIN:VEVENT
+UID:8a6f178935477082aa3cabca5b8f7313
+DTSTAMP:20260909T040046Z
+DTSTART:20261031T160000Z
+DTEND:20261031T194500Z
+SUMMARY:Tukarica Lodge Fall Fellowship 2026
+LOCATION:Boise Public Library, Bown Crossing Branch
+DESCRIPTION:https://www.mountainwestcouncil.org/oaff2026\n\nActivities Include: Fellowship Food Elections for 2027 leadership team Field games, board games, and more! We will be done in plenty of time for folks
+END:VEVENT
+BEGIN:VEVENT
 UID:2fa90d339cd1fff3c68ffeb1c184665a
 DTSTAMP:20260702T040006Z
 DTSTART:20261107T070000Z
@@ -850,6 +859,15 @@ DTEND:20270503T060000Z
 SUMMARY:Camp Wilson 2027
 LOCATION:Camp Wilson
 DESCRIPTION:https://www.mountainwestcouncil.org/content/136853/Camp-Wilson-2027
+END:VEVENT
+BEGIN:VEVENT
+UID:ea25284ab7dd290624d29dac005ce36b
+DTSTAMP:20260909T040046Z
+DTSTART:20270611T060000Z
+DTEND:20270614T060000Z
+SUMMARY:OA Spring Induction 2027
+LOCATION:Bradley Scout Reservation (BSR)
+DESCRIPTION:https://www.mountainwestcouncil.org/content/136901/OA-Spring-Induction-2027
 END:VEVENT
 BEGIN:VEVENT
 UID:38823bd1ac14dbfc1528694f088dab48
