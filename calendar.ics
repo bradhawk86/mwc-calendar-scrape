@@ -986,4 +986,13 @@ SUMMARY:Middle Fork Week 6
 LOCATION:Bradley Scout Reservation (BSR)
 DESCRIPTION:https://www.mountainwestcouncil.org/content/136872/Middle-Fork-Week-6
 END:VEVENT
+BEGIN:VEVENT
+UID:f3462729ad3b16e7ce6ecd046264c693
+DTSTAMP:20260911T035634Z
+DTSTART:20270910T060000Z
+DTEND:20270913T060000Z
+SUMMARY:Rendezvous 2027
+LOCATION:Bradley Scout Reservation (BSR)
+DESCRIPTION:https://www.mountainwestcouncil.org/content/136859/Rendezvous-2027
+END:VEVENT
 END:VCALENDAR
