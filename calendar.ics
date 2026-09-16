@@ -653,6 +653,15 @@ LOCATION:Council Office & Scout Shop Closed
 DESCRIPTION:https://www.mountainwestcouncil.org/content/131332/Columbus---National-Indigenous-Peoples-Day
 END:VEVENT
 BEGIN:VEVENT
+UID:458d00eb4bcc4fb5ca2d0e168ceee1ad
+DTSTAMP:20260916T041153Z
+DTSTART:20261017T160000Z
+DTEND:20261017T200000Z
+SUMMARY:Jamboree-on-the-Air
+LOCATION:Eagle Island State Park
+DESCRIPTION:https://www.mountainwestcouncil.org/content/136936/Jamboree-on-the-Air\n\nJamboree-on-the-Air, or JOTA, is the largest Scouting event in the world. It is held annually the third full weekend in October. JOTA uses amateur
+END:VEVENT
+BEGIN:VEVENT
 UID:83c741e53c012852e1436af7a1942e02
 DTSTAMP:20260831T185857Z
 DTSTART:20261021T140000Z
@@ -978,6 +987,15 @@ LOCATION:Salmon River High Adventure Base
 DESCRIPTION:https://www.mountainwestcouncil.org/content/136866/SRHAB-Session-3
 END:VEVENT
 BEGIN:VEVENT
+UID:c70a605817e29e2b13385efb9fd36eaa
+DTSTAMP:20260916T041153Z
+DTSTART:20270730T060000Z
+DTEND:20270802T060000Z
+SUMMARY:Wood Badge 2027 Weekend 1
+LOCATION:Bradley Scout Reservation (BSR)
+DESCRIPTION:https://www.mountainwestcouncil.org/content/136938/Wood-Badge-2027-Weekend-1
+END:VEVENT
+BEGIN:VEVENT
 UID:707c4526c89888e6f4cd478f01e96913
 DTSTAMP:20260828T220007Z
 DTSTART:20270802T060000Z
@@ -985,6 +1003,15 @@ DTEND:20270807T060000Z
 SUMMARY:Middle Fork Week 6
 LOCATION:Bradley Scout Reservation (BSR)
 DESCRIPTION:https://www.mountainwestcouncil.org/content/136872/Middle-Fork-Week-6
+END:VEVENT
+BEGIN:VEVENT
+UID:2efe8220561a59b4c7cf9a7bc9010c7b
+DTSTAMP:20260916T041153Z
+DTSTART:20270807T060000Z
+DTEND:20270809T060000Z
+SUMMARY:Wood Badge 2027 Weekend 2
+LOCATION:Bradley Scout Reservation (BSR)
+DESCRIPTION:https://www.mountainwestcouncil.org/content/136939/Wood-Badge-2027-Weekend-2
 END:VEVENT
 BEGIN:VEVENT
 UID:f3462729ad3b16e7ce6ecd046264c693
