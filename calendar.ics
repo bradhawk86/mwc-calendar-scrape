@@ -653,6 +653,15 @@ LOCATION:Council Office & Scout Shop Closed
 DESCRIPTION:https://www.mountainwestcouncil.org/content/131332/Columbus---National-Indigenous-Peoples-Day
 END:VEVENT
 BEGIN:VEVENT
+UID:6ac8005eeac36b92020211f29f61653e
+DTSTAMP:20260922T041209Z
+DTSTART:20261017T000000Z
+DTEND:20261018T190000Z
+SUMMARY:Tapawingo AOL Camporee
+LOCATION:Triangle Park
+DESCRIPTION:https://www.mountainwestcouncil.org/content/131318/Tapawingo-AOL-Camporee
+END:VEVENT
+BEGIN:VEVENT
 UID:458d00eb4bcc4fb5ca2d0e168ceee1ad
 DTSTAMP:20260916T041153Z
 DTSTART:20261017T160000Z
