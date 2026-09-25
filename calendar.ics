@@ -1031,4 +1031,13 @@ SUMMARY:Rendezvous 2027
 LOCATION:Bradley Scout Reservation (BSR)
 DESCRIPTION:https://www.mountainwestcouncil.org/content/136859/Rendezvous-2027
 END:VEVENT
+BEGIN:VEVENT
+UID:6410274d04ad6ef91c207957fe3f82aa
+DTSTAMP:20260925T041839Z
+DTSTART:20270924T060000Z
+DTEND:20270927T060000Z
+SUMMARY:OA Fall Induction 2027
+LOCATION:Bradley Scout Reservation (BSR)
+DESCRIPTION:https://www.mountainwestcouncil.org/content/136905/OA-Fall-Induction-2027
+END:VEVENT
 END:VCALENDAR
