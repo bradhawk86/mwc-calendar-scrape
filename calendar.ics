@@ -771,12 +771,12 @@ LOCATION:Council Office & Scout Shop Closed
 DESCRIPTION:https://www.mountainwestcouncil.org/content/131334/Thanksgiving
 END:VEVENT
 BEGIN:VEVENT
-UID:6589967588f35d34ab4bad7fe53eb62a
-DTSTAMP:20260831T185857Z
-DTSTART:20261202T160000Z
-DTEND:20261202T230000Z
+UID:850a08c6d34d8b69d5d066cbeab326d6
+DTSTAMP:20260930T045523Z
+DTSTART:20261209T160000Z
+DTEND:20261209T230000Z
 SUMMARY:Popcorn Unit Money Collection Due Today, Popcorn Unit Money Collection
-LOCATION:Immanual Lutheran Church
+LOCATION:Mountain West Council Office
 DESCRIPTION:https://www.mountainwestcouncil.org/admin2/events/7530/31518/Popcorn-Unit-Money-Collection-Due-Today--Popcorn-Unit-Money-Collection-\n\nPlease submit your Popcorn Unit Money Today!
 END:VEVENT
 BEGIN:VEVENT
