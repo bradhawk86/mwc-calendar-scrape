@@ -358,7 +358,7 @@ DTSTAMP:20260702T040006Z
 DTSTART:20260619T060000Z
 DTEND:20260619T070000Z
 SUMMARY:Juneteenth
-LOCATION:Council Office & Scout Shop Closed
+LOCATION:Boise Scout Office
 DESCRIPTION:https://www.mountainwestcouncil.org/content/131329/Juneteenth
 END:VEVENT
 BEGIN:VEVENT
@@ -376,7 +376,7 @@ DTSTAMP:20260702T040006Z
 DTSTART:20260621T060000Z
 DTEND:20260621T070000Z
 SUMMARY:Fathers Day
-LOCATION:Council Office & Scout Shop Closed
+LOCATION:Boise Scout Office
 DESCRIPTION:https://www.mountainwestcouncil.org/content/131330/Fathers-Day
 END:VEVENT
 BEGIN:VEVENT
@@ -421,7 +421,7 @@ DTSTAMP:20260702T040006Z
 DTSTART:20260704T060000Z
 DTEND:20260704T070000Z
 SUMMARY:Independence Day
-LOCATION:Council Office & Scout Shop Closed
+LOCATION:Boise Scout Office
 DESCRIPTION:https://www.mountainwestcouncil.org/content/131326/Independence-Day
 END:VEVENT
 BEGIN:VEVENT
@@ -538,7 +538,7 @@ DTSTAMP:20260702T040006Z
 DTSTART:20260907T060000Z
 DTEND:20260907T070000Z
 SUMMARY:Labor Day
-LOCATION:Council Office & Scout Shop Closed
+LOCATION:Boise Scout Office
 DESCRIPTION:https://www.mountainwestcouncil.org/content/131331/Labor-Day
 END:VEVENT
 BEGIN:VEVENT
@@ -649,7 +649,7 @@ DTSTAMP:20260702T040006Z
 DTSTART:20261012T060000Z
 DTEND:20261012T070000Z
 SUMMARY:Columbus / National Indigenous Peoples Day
-LOCATION:Council Office & Scout Shop Closed
+LOCATION:Boise Scout Office
 DESCRIPTION:https://www.mountainwestcouncil.org/content/131332/Columbus---National-Indigenous-Peoples-Day
 END:VEVENT
 BEGIN:VEVENT
@@ -740,7 +740,7 @@ DTSTAMP:20260702T040006Z
 DTSTART:20261111T070000Z
 DTEND:20261111T080000Z
 SUMMARY:Veterans Day
-LOCATION:Council Office & Scout Shop Closed
+LOCATION:Boise Scout Office
 DESCRIPTION:https://www.mountainwestcouncil.org/content/131333/Veterans-Day
 END:VEVENT
 BEGIN:VEVENT
@@ -767,7 +767,7 @@ DTSTAMP:20260702T040006Z
 DTSTART:20261126T070000Z
 DTEND:20261128T060000Z
 SUMMARY:Thanksgiving
-LOCATION:Council Office & Scout Shop Closed
+LOCATION:Boise Scout Office
 DESCRIPTION:https://www.mountainwestcouncil.org/content/131334/Thanksgiving
 END:VEVENT
 BEGIN:VEVENT
@@ -803,7 +803,7 @@ DTSTAMP:20260702T040006Z
 DTSTART:20261225T070000Z
 DTEND:20261225T080000Z
 SUMMARY:Christmas
-LOCATION:Council Office & Scout Shop Closed
+LOCATION:Boise Scout Office
 DESCRIPTION:https://www.mountainwestcouncil.org/content/131335/Christmas
 END:VEVENT
 BEGIN:VEVENT
